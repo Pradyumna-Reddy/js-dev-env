@@ -3,6 +3,15 @@
     "version": "1.0.0",
     "description": "javascript dev starter kit",
     "scripts": {
+        "prestart": "babel-node buildScripts/startMessage.js",
+        "start": "npm-run-all --parallel open:src lint:watch test:watch",
+        "open:src": "babel-node buildScripts/srcServer.js",
+        "localtunnel": "lt --port 4343 --subdomain prady",
+        "share": "npm-run-all --parallel start localtunnel",
+        "lint": "esw webpack.config.* src buildScripts --color",
+        "lint:watch": "npm run lint -- --watch",
+        "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+        "test:watch": "npm run test -- --watch"
     },
     "author": "Pradyumna Reddy",
     "license": "MIT",
